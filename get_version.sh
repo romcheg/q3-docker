@@ -10,6 +10,7 @@ else
     SED="sed"
 fi
 
+ACTION=${1:-"show"}
 MAIN_BRANCH="${MAIN_BRANCH:-"master"}"
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 LATEST_TAG="$(git describe --abbrev=0)"
@@ -48,4 +49,13 @@ show_current_version() {
 }
 
 
-show_current_version
+case "$ACTION" in
+    show)
+        show_current_version
+        ;;
+    generate)
+        generate_next_version
+        ;;
+    *)
+    echo $"Usage: $0 {show|generate}"
+esac
