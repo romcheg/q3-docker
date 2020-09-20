@@ -16,4 +16,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: romcheg/q3a-server
           tag_with_ref: true
-          build-args: "PROJECT_VERSION=${GITHUB_REF#refs/*/}"
+          build-args: "PACKAGE_VERSION=${GITHUB_REF#refs/*/}"
