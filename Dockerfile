@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:focal
 
 ARG PACKAGE_VERSION=""
 
@@ -9,8 +9,9 @@ LABEL version="${PACKAGE_VERSION}"
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN dpkg --add-architecture i386 && \
-    sudo apt -y update && \
-    sudo apt -y --no-install-recommends install wget bsdmainutils unzip binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 xz-utils curl && \
+    apt -y update && \
+    apt -y --no-install-recommends install \
+        locales ca-certificates file python3 iproute2 wget bsdmainutils unzip binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 xz-utils curl && \
     rm -rf /var/lib/apt/lists/* && \
     locale-gen en_US.UTF-8
 
