@@ -33,4 +33,4 @@ USER $Q3_USER
 WORKDIR "/home/${Q3_USER}/"
 
 ENTRYPOINT "/home/${Q3_USER}/q3server"
-CMD "start"
+CMD "debug"
