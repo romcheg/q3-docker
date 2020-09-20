@@ -32,5 +32,5 @@ RUN useradd -d "/home/${Q3_USER}" -m -s /bin/bash "${Q3_USER}" && \
 USER $Q3_USER
 WORKDIR "/home/${Q3_USER}/"
 
-ENTRYPOINT "/home/${Q3_USER}/q3server"
+ENTRYPOINT "./q3server"
 CMD "debug"
