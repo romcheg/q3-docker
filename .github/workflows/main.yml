@@ -1,8 +1,6 @@
 ---
 name: Post-merge
 
-# NOTE(romcheg): Controls when the action will run. Triggers the workflow on
-#                push or pull request events but only for the ng branch
 on:
   push:
     branches: [ master ]
@@ -10,8 +8,8 @@ on:
     branches: [ master ]
 
 jobs:
-  code_style:
-    name: Check build passes
+  build:
+    name: Build docker image
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code
