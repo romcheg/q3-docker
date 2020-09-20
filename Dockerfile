@@ -29,8 +29,9 @@ RUN useradd -d "/home/${Q3_USER}" -m -s /bin/bash "${Q3_USER}" && \
     su - "${Q3_USER}" -c "./linuxgsm.sh q3server && ./q3server auto-install" && \
     usermod -s /bin/false  "${Q3_USER}"
 
+ADD entrypoint.sh "/home/${Q3_USER}/entrypoint.sh"
+
 USER $Q3_USER
 WORKDIR "/home/${Q3_USER}/"
 
-ENTRYPOINT "./q3server"
-CMD "debug"
+ENTRYPOINT "./entrypoint.sh"
