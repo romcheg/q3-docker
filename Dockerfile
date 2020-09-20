@@ -21,13 +21,12 @@ ENV LC_ALL en_US.UTF-8
 ARG Q3_USER="q3server"
 ENV Q3_USER=$Q3_USER
 
-RUN useradd -d "/home/${Q3_USER}" -m -s /bin/bash "${Q3_USER}" && \
+RUN useradd -d "/home/${Q3_USER}" -m -G tty -s /bin/bash "${Q3_USER}" && \
     curl -L https://linuxgsm.sh > "/home/${Q3_USER}/linuxgsm.sh" && \
     chown "${Q3_USER}" "/home/${Q3_USER}/linuxgsm.sh" && \
     chmod 0700 "/home/${Q3_USER}/linuxgsm.sh" && \
     cd "/home/${Q3_USER}/" && \
-    su - "${Q3_USER}" -c "./linuxgsm.sh q3server && ./q3server auto-install" && \
-    usermod -s /bin/false  "${Q3_USER}"
+    su - "${Q3_USER}" -c "./linuxgsm.sh q3server && ./q3server auto-install"
 
 ADD entrypoint.sh "/home/${Q3_USER}/entrypoint.sh"
 
